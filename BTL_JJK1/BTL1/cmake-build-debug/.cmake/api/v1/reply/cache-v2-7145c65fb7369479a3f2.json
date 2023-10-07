@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug"
+			"value" : "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug"
 		},
 		{
 			"name" : "BTL1_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/DSA/BTL/BTL_JJK1/BTL1"
+			"value" : "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug"
+			"value" : "d:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -679,7 +679,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -751,7 +751,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/DSA/BTL/BTL_JJK1/BTL1"
+			"value" : "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",

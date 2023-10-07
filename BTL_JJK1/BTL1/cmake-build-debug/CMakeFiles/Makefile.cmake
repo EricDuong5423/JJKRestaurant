@@ -7,11 +7,6 @@ set(CMAKE_DEPENDS_GENERATOR "MinGW Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "C:/DSA/BTL/BTL_JJK1/BTL1/CMakeLists.txt"
-  "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
-  "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
-  "CMakeFiles/3.25.2/CMakeRCCompiler.cmake"
-  "CMakeFiles/3.25.2/CMakeSystem.cmake"
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCCompiler.cmake.in"
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCCompilerABI.c"
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake"
@@ -114,6 +109,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows.cmake"
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/WindowsPaths.cmake"
   "C:/Program Files/JetBrains/CLion 2023.1.2/bin/cmake/win/x64/share/cmake-3.25/Modules/ProcessorCount.cmake"
+  "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/CMakeLists.txt"
+  "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
+  "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
+  "CMakeFiles/3.25.2/CMakeRCCompiler.cmake"
+  "CMakeFiles/3.25.2/CMakeSystem.cmake"
   )
 
 # The corresponding makefile is:

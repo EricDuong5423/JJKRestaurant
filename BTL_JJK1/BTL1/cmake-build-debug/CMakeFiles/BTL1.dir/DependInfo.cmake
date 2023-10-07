@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/DSA/BTL/BTL_JJK1/BTL1/main.cpp" "CMakeFiles/BTL1.dir/main.cpp.obj" "gcc" "CMakeFiles/BTL1.dir/main.cpp.obj.d"
+  "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/main.cpp" "CMakeFiles/BTL1.dir/main.cpp.obj" "gcc" "CMakeFiles/BTL1.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

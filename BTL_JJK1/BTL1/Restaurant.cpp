@@ -1,5 +1,7 @@
 #include "main.h"
 
+//litte change;
+
 class Red: public Restaurant::customer
 {
     public:

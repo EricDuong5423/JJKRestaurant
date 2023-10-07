@@ -1,4 +1,4 @@
-# Install script for directory: C:/DSA/BTL/BTL_JJK1/BTL1
+# Install script for directory: D:/DSA/JJKRestaurant/BTL_JJK1/BTL1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
