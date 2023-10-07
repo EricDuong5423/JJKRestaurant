@@ -1,0 +1,3 @@
+C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/BTL1.dir
+C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/DSA/BTL/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
