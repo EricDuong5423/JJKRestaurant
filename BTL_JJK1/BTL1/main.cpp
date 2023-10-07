@@ -46,11 +46,8 @@ void simulate(string filename, imp_res* r)
             r->LIGHT(stoi(num));
         }
     }
-    r->toStringRestaurant();
-    cout << endl;
-    r->toStringLine();
-    cout << endl;
-    r->toStringFIFO();
+    Print::toStringRestaurant(r->headR);
+    Print::toStringLine(r->waitingLine);
 }
 
 int main(int argc, char* argv[]) {
