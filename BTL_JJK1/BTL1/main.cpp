@@ -43,10 +43,10 @@ void simulate(string filename, imp_res* r)
         else // LIGHT <NUM>
         {
             ss >> num;
-            cout << str << " " << num << " " << "line " << i << endl;
+            cout << str << " " << num << " " << "line " << line << endl;
             r->LIGHT(stoi(num));
         }
-        i++;
+        line++;
     }
 }
 

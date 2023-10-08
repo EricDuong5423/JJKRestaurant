@@ -7,7 +7,7 @@
 using namespace std;
 
 int MAXSIZE;
-int i = 1;
+int line = 1;
 
 class Restaurant {
 
