@@ -6,6 +6,7 @@ void simulate(string filename, imp_res* r)
 {
     ifstream ss(filename);
     string str, maxsize, name, energy, num;
+    int i = 1;
     while(ss >> str)
     {
         if(str == "MAXSIZE")
@@ -43,11 +44,11 @@ void simulate(string filename, imp_res* r)
         else // LIGHT <NUM>
         {
             ss >> num;
+            cout << str << " " << num << " " << "line " << i << endl;
             r->LIGHT(stoi(num));
         }
+        i++;
     }
-    Print::toStringRestaurant(r->headR);
-    Print::toStringLine(r->waitingLine);
 }
 
 int main(int argc, char* argv[]) {
