@@ -6,7 +6,7 @@ class imp_res : public Restaurant
         customer*customerX; // Lưu khách mới được thay đổi gần đây
         int sizeCusInDesk; // Biến đếm số lượng khách ở bàn
 
-        customer*customerQueue; // Lưu những vị Khách ở hàng đợi
+        customer*customerQueue; // Lưu những vị Khách ở hàng đợi để làm iterator
         customer*customerFirstQueue;//Lưu người đầu tiên trong hàng đợi để dễ dàng làm việc
         int sizeCusInQueue;// Biến đếm số lượng khách ở trong hàng đợi
 
@@ -37,9 +37,8 @@ class imp_res : public Restaurant
     public:
         bool checkDuplicate(string name){
             customer*checkTable = customerX;
-            customer*checkQueue = customerQueue;
-            if (sizeCusInDesk != 0) //nếu số lượng khách ở bàn == 0 thì bỏ qua ko cần check
-            {
+            customer*checkQueue = customerFirstQueue;
+            if (sizeCusInDesk != 0){
                 do {
                     if (checkTable->name == name)
                     {
@@ -47,17 +46,21 @@ class imp_res : public Restaurant
                     }
                     checkTable = checkTable->next;
                 }while(checkTable != customerX); //vì trên bàn là circle double link list nên chỉ chạy tới thằng customerX để tránh bị vòng lặp vô tận
-            }
-            if (sizeCusInQueue != 0)//nếu số lượng khách ở hàng đợi == 0 thì bỏ qua mà return false luôn
-            {
-                do{
+            }//nếu số lượng khách ở bàn == 0 thì bỏ qua ko cần check
+
+            if (sizeCusInQueue != 0){
+                while(checkQueue != nullptr){
                     if (checkQueue->name == name)
                     {
                         return true;
                     }
                     checkQueue = checkQueue->next;
-                }while(checkQueue != nullptr); // vì trong hàng đợi là link list thông thường nên chỉ cần chạy tới NULL là ngưng
-            }
+                }
+            }//nếu số lượng khách ở hàng đợi == 0 thì bỏ qua mà return false luôn
+            checkTable = nullptr;
+            checkQueue = nullptr;
+            delete checkTable;
+            delete checkQueue;
             return false;
         }//check "thiên thượng thiên hạ, duy chỉ độc tôn", nếu có trùng trả về true không thì ngược lại
         void appendQueue(customer*cus){
@@ -150,7 +153,7 @@ class imp_res : public Restaurant
                 appendTimeline(newTimeline);
                 return;
             }//Nếu là vị khách đầu tiên thì prev với next bằng chính nó và customerX sẽ cập nhật
-            else if (sizeCusInDesk >= MAXSIZE/2){
+            else if (sizeCusInDesk >= MAXSIZE/2.0){
                 customerX = findHighRES(newCus);//Đi tìm vị trí có RES cao nhất và gán nó cho customerX
                 if (newCus->energy - customerX->energy > 0)addLeft(newCus);//nếu hiệu energy của newCus và customerX dương thì add left, không thì ngược lại
                 else addRight(newCus);

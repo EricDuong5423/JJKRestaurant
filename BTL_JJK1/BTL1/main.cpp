@@ -6,7 +6,6 @@ void simulate(string filename, imp_res* r)
 {
     ifstream ss(filename);
     string str, maxsize, name, energy, num;
-    int i = 1;
     while(ss >> str)
     {
         if(str == "MAXSIZE")

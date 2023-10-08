@@ -7,6 +7,7 @@
 using namespace std;
 
 int MAXSIZE;
+int i = 1;
 
 class Restaurant {
 
