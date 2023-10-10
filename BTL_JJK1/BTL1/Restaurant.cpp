@@ -37,6 +37,8 @@ class imp_res : public Restaurant
             sizeCusInQueue = 0;
 
             CustomerTimeHead = CustomerTimeTail = nullptr;
+
+            listofSoccerer = listofCursedSpirit = nullptr;
         }
 
     private:
@@ -56,6 +58,18 @@ class imp_res : public Restaurant
         void kickCustomer(customer*kickingCus);//TODO:hàm đuổi khách đã được xác định
         void pop_frontTimeline();//TODO:Xóa phần tử đầu tiên trong timeLine khi đã đuổi khách
         void invitefromQueue();//TODO:Mời những vị khách trong hàng chờ vào nhà hàng và xóa vị khách đó ra khỏi hàng chờ
+    //TODO:Hàm dành cho domain expansion
+    public:
+        customer*listofSoccerer;
+        int SoccererTable = 0;
+        customer*listofCursedSpirit;
+        int CursedSpiritTable = 0;
+        int countESoccerer();//TODO:Hàm đếm số energy của chú thuật sư
+        void appendSoccererList(customer*Soccerer);//TODO:Hàm add vào list của chú thuật sư
+        int countECursedSpirit();//TODO:Hàm đếm energy của oán linh
+        void appendCursedSpiritList(customer*CursedSpirit);//TODO:Hàm add vào list của oán linh
+        void kickallSoccerer();//TODO: đuổi tất cả các khách là chú thuật sư
+        void kickallCursedSpririt();//TODO: đuổi tất cả các khách là oán linh
     public:
         void RED(string name, int energy)
         {
@@ -134,7 +148,13 @@ class imp_res : public Restaurant
         }
         void DOMAIN_EXPANSION()
         {
-
+            int countES = countESoccerer(), countEES = countECursedSpirit();
+            if (countES > countEES){
+                kickallCursedSpririt();
+            }
+            else{
+                kickallSoccerer();
+            }
         }
         void LIGHT(int num)
         {
@@ -171,6 +191,7 @@ class imp_res : public Restaurant
         }
 };
 
+//RED
 bool imp_res::checkDuplicate(std::string name) {
     customer*checkTable = customerX;
     customer*checkQueue = customerQueueHead;
@@ -259,12 +280,15 @@ void imp_res::addRight(Restaurant::customer *cus) {
     temp = nullptr;
     delete temp;
 }
+
+//BLUE
 Restaurant::customer*imp_res::findKickingCustomer() {
     customer*run = customerX;
     do
     {
         if (run->name == CustomerTimeHead->data->name)
         {
+            run = nullptr;
             return run;
         }
         run = run->next;
@@ -312,4 +336,92 @@ void imp_res::invitefromQueue() {
     }
     else customerQueueHead = customerQueueTail = nullptr;
     RED(name, energy);
+}
+
+//DOMAIN EXPANSION
+int imp_res::countESoccerer() {
+    customerTime*runTable = CustomerTimeHead;
+    customer*runQueue = customerQueueHead;
+    int result = 0;
+    for(int i = 0; i < sizeCusInDesk; i++){
+        if(runTable->data->energy > 0)
+        {
+            result+= runTable->data->energy;
+            SoccererTable++;
+            appendSoccererList(runTable->data);
+        }
+        runTable = runTable->next;
+    }//TODO:duyệt qua bàn ăn theo thứ tự add vào.
+    for(int i = 0; i < sizeCusInQueue; i++)
+    {
+        if(runQueue->energy > 0)
+        {
+            result+=runQueue->energy;
+            appendSoccererList(runQueue);
+        }
+        runQueue = runQueue->next;
+    }//TODO:duyệt qua hàng chờ
+    runTable = nullptr;
+    runQueue = nullptr;
+    return result;
+}
+int imp_res::countECursedSpirit() {
+    customerTime*runTable = CustomerTimeHead;
+    customer*runQueue = customerQueueHead;
+    int result = 0;
+    for(int i = 0; i < sizeCusInDesk; i++){
+        if(runTable->data->energy < 0)
+        {
+            result+= runTable->data->energy;
+            CursedSpiritTable++;
+            appendCursedSpiritList(runTable->data);
+        }
+        runTable = runTable->next;
+    }//TODO:duyệt qua bàn ăn theo thứ tự
+    for(int i = 0; i < sizeCusInQueue; i++)
+    {
+        if(runQueue->energy < 0)
+        {
+            result+=runQueue->energy;
+            appendCursedSpiritList(runQueue);
+        }
+        runQueue = runQueue->next;
+    }//TODO:duyệt qua hàng chờ
+    runTable = nullptr;
+    runQueue = nullptr;
+    result = abs(result);
+    return result;
+}
+void imp_res::appendSoccererList(Restaurant::customer*Soccerer){
+    customer*clone = new customer(Soccerer->name,Soccerer->energy, nullptr, nullptr);
+    if(listofSoccerer == nullptr){
+        listofSoccerer = clone;
+    }//TODO: Nếu mà không có ai trong list thì list sẽ bằng clone
+    else{
+        clone->next = listofSoccerer;
+        listofSoccerer = clone;
+    }//TODO: Nếu không thì thêm clone vào đầu list
+    clone = nullptr;
+}
+void imp_res::appendCursedSpiritList(Restaurant::customer *CursedSpirit) {
+    customer*clone = new customer(CursedSpirit->name,CursedSpirit->energy, nullptr, nullptr);
+    if(listofCursedSpirit == nullptr){
+        listofCursedSpirit = clone;
+    }//TODO: Nếu mà không có ai trong list thì list sẽ bằng clone
+    else{
+        clone->next = listofCursedSpirit;
+        listofCursedSpirit = clone;
+    }//TODO: Nếu không thì thêm clone vào đầu list
+    clone = nullptr;
+}
+void imp_res::kickallSoccerer() {
+    customer*run = listofSoccerer;
+    customer*runTable = customerX;
+    for(int i = 0; i < SoccererTable; i++)
+    {
+        while(runTable->name != run->name)runTable=runTable->next;
+    }
+}
+void imp_res::kickallCursedSpririt() {
+
 }
