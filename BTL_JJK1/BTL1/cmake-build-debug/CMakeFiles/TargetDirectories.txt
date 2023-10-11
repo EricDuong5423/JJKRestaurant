@@ -1,3 +1,0 @@
-D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/BTL1.dir
-D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/DSA/JJKRestaurant/BTL_JJK1/BTL1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,3 @@
+D:/DSA/JJKRestaurant/Thanh Tuss/cmake-build-debug/CMakeFiles/Thanh_Tuss.dir
+D:/DSA/JJKRestaurant/Thanh Tuss/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/DSA/JJKRestaurant/Thanh Tuss/cmake-build-debug/CMakeFiles/rebuild_cache.dir

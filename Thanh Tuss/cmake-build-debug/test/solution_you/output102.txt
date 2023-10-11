@@ -1,0 +1,16 @@
+LIGHT 1 line 8
+AF-8
+AE-4
+AD-3
+AC-2
+LIGHT -1 line 10
+AF-8
+AD-3
+AE-4
+LIGHT 1 line 12
+AF-8
+AE-4
+LIGHT -1 line 14
+AF-8
+LIGHT -1 line 16
+LIGHT -1 line 18
