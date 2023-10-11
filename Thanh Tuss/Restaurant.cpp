@@ -42,9 +42,9 @@ public:
         listofSoccerer = listofCursedSpirit = nullptr;
     }
     ~imp_res(){
-        delete customerX,customerQueueHead,customerQueueTail,CustomerTimeHead,CustomerTimeTail,listofSoccerer, listofCursedSpirit;
+        customerX = customerQueueHead = customerQueueTail = nullptr;
+        CustomerTimeHead = CustomerTimeTail = listofCursedSpirit = listofSoccerer = nullptr;
         sizeCusInDesk = sizeCusInQueue = 0;
-        line = 1;
     }
 private:
     customerTime *CustomerTimeTail;//TODO:Lưu thứ tự các vị khách được cho vào bàn ăn
@@ -80,6 +80,7 @@ public:
 public:
     void RED(string name, int energy)
     {
+
         if (energy == 0)return;//TODO:Đuổi khách khi khách không phải oán linh hoặc thuật sư
         else if (sizeCusInDesk >= MAXSIZE && sizeCusInQueue >= MAXSIZE)return;//TODO:Đuổi khách khi quá tải cả ở bàn và trong hàng đợi
         else{
@@ -172,6 +173,9 @@ public:
     }
     void LIGHT(int num)
     {
+        if (line == 17){
+            cout << endl;
+        }
         if (num == 0 && sizeCusInQueue != 0){
             customer*print = customerQueueHead;
             if(print == nullptr)return;

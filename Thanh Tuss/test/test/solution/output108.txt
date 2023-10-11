@@ -1,5 +1,0 @@
-LIGHT 1 line 4
-LIGHT 1 line 14
-AH-3
-AG-2
-AK-1
