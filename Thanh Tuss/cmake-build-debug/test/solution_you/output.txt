@@ -1,0 +1,76 @@
+LIGHT 1 line 6
+Fl--6
+zy-5
+im--4
+rF--3
+LIGHT 1 line 7
+Fl--6
+zy-5
+im--4
+rF--3
+LIGHT 5 line 10
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6
+LIGHT 3 line 12
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6
+LIGHT -7 line 19
+DC--2
+Fl--6
+rF--3
+im--4
+zy-5
+LIGHT -2 line 33
+DC--2
+Fl--6
+rF--3
+im--4
+zy-5
+LIGHT 6 line 34
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6
+LIGHT -2 line 37
+DC--2
+Fl--6
+rF--3
+im--4
+zy-5
+LIGHT -4 line 43
+DC--2
+Fl--6
+rF--3
+im--4
+zy-5
+LIGHT 3 line 45
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6
+LIGHT 9 line 48
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6
+LIGHT -8 line 49
+DC--2
+Fl--6
+rF--3
+im--4
+zy-5
+LIGHT 3 line 50
+DC--2
+zy-5
+im--4
+rF--3
+Fl--6

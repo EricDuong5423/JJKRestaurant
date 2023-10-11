@@ -1,0 +1,50 @@
+MAXSIZE 5
+RED zy 5
+RED rF -3
+RED im -4
+RED Fl -6
+LIGHT 1
+LIGHT 1
+RED DC -2
+RED fg -3
+LIGHT 5
+RED qs -4
+LIGHT 3
+RED Fz 2
+RED cC -1
+RED kD 2
+RED Cd -3
+RED vc -4
+RED zu -3
+LIGHT -7
+RED id 9
+RED mn 5
+RED lm -3
+RED oq -10
+RED wx -4
+RED kj -3
+RED nd 3
+RED rd -3
+RED re 6
+RED su -7
+RED an 9
+RED om 2
+RED xe -8
+LIGHT -2
+LIGHT 6
+RED Bx 0
+RED vf 6
+LIGHT -2
+RED xC -3
+RED au 5
+RED Fd 9
+RED ke -1
+RED ei -1
+LIGHT -4
+RED Cd 0
+LIGHT 3
+RED ra -10
+RED wi 9
+LIGHT 9
+LIGHT -8
+LIGHT 3

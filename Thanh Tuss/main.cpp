@@ -141,8 +141,17 @@ int main(int argc, char* argv[]) {
     string folder_input = "test/input/input";
     string folder_solution_you = "test/solution_you/output";
     {
+//        string test_folder = "test/input/test.txt";
+//        string out_folder = "test/solution_you/output.txt";
+//        solution.open(out_folder);
+//        imp_res*r = new imp_res();
+//        simulate(test_folder, r);
+//        delete r;
+//        solution.close();
+    }
+    {
         int start = 1;
-        int end = 300;
+        int end = 200;
 
         if(argc < 2 || argc == 2 && argv[1][0] == 'a')
         {
