@@ -173,9 +173,6 @@ public:
     }
     void LIGHT(int num)
     {
-        if (line == 17){
-            cout << endl;
-        }
         if (num == 0 && sizeCusInQueue != 0){
             customer*print = customerQueueHead;
             if(print == nullptr)return;
