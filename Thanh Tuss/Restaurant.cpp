@@ -54,6 +54,11 @@ class imp_res : public Restaurant
         void kickCustomer(customerTime*kickingCus);//TODO:hàm đuổi khách đã được xác định
         void invitefromQueue();//TODO:Mời những vị khách trong hàng chờ vào nhà hàng và xóa vị khách đó ra khỏi hàng chờ
         void addinDesk(customer*Customer);//TODO:Add lại vào trong nhà hàng
+    //TODO:Hàm dành cho DOMAIN EXPASION
+    public:
+        void kickSoccerer();//TODO:kick hết chú thuật sư
+        void kickEvilSpirit();//TODO: kick hết oán linh
+        void kickinQueue(customerTime*kickingCus);//TODO: kick trong hàng chờ
     public:
         void RED(string name, int energy)
         {
@@ -86,7 +91,7 @@ class imp_res : public Restaurant
             }//TODO:Nếu là vị khách đầu tiên thì prev với next bằng chính nó và customerX sẽ cập nhật
             else if (sizeCusInDesk >= MAXSIZE/2){
                 customerX = findHighRES(newCus);//Đi tìm vị trí có RES cao nhất và gán nó cho customerX
-                if (newCus->energy - customerX->energy > 0)addLeft(newCus);//nếu hiệu energy của newCus và customerX dương thì add left, không thì ngược lại
+                if (newCus->energy - customerX->energy >= 0)addLeft(newCus);//nếu hiệu energy của newCus và customerX dương thì add left, không thì ngược lại
                 else addRight(newCus);
                 sizeCusInDesk++;
                 customerTime *newTimeLine = new customerTime(newCus,true);
@@ -106,9 +111,6 @@ class imp_res : public Restaurant
         }
         void BLUE(int num)
         {
-            if (line == 9){
-                cout << endl;
-            }
             if (sizeCusInDesk == 0)return;//TODO:nếu không có khách trên bàn thì không xóa.
             if (num > sizeCusInDesk)num=sizeCusInDesk;//TODO:Chặn trường hợp num chạy quá số lượng khách trên bàn ăn.
             for(int i = 0; i < num; i++)
@@ -133,7 +135,28 @@ class imp_res : public Restaurant
         }
         void DOMAIN_EXPANSION()
         {
-
+            if(sizeCusInDesk == 0 && sizeCusInQueue == 0)return;
+            int SoccererEnergy = 0, EvilSpiritEnergy = 0;
+            customerTime*run = CustomerTimeHead;
+            while(run != nullptr){
+                if (run->data->energy > 0){
+                    SoccererEnergy += run->data->energy;
+                }
+                else{
+                    EvilSpiritEnergy += run->data->energy;
+                }
+                run = run->next;
+            }
+            EvilSpiritEnergy = abs(EvilSpiritEnergy);
+            run = nullptr;
+            if (SoccererEnergy == 0 || EvilSpiritEnergy == 0)return;
+            if(SoccererEnergy >= EvilSpiritEnergy){
+                kickEvilSpirit();
+            }
+            else{
+                kickSoccerer();
+            }
+            invitefromQueue();
         }
         void LIGHT(int num)
         {
@@ -275,7 +298,6 @@ void imp_res::kickCustomer(imp_res::customerTime *kickingCus){
     sizeCusInDesk--;
     if(sizeCusInDesk == 0){
         customerX = nullptr;
-
         if(sizeCusInQueue != 0){
             CustomerTimeHead = CustomerTimeHead->next;
             CustomerTimeHead->pre = nullptr;
@@ -319,7 +341,12 @@ void imp_res::invitefromQueue() {
                 temp = temp->next;
             }
         }
-        customerQueueHead = customerQueueHead->next;
+        if(temp->data == customerQueueTail){
+            customerQueueHead = customerQueueTail = nullptr;
+        }
+        else{
+            customerQueueHead = customerQueueHead->next;
+        }
         temp->inDesk = true;
         addinDesk(temp->data);
         sizeCusInQueue--;
@@ -334,7 +361,7 @@ void imp_res::addinDesk(customer*newCus){
     }//TODO:Nếu là vị khách đầu tiên thì prev với next bằng chính nó và customerX sẽ cập nhật
     else if (sizeCusInDesk >= MAXSIZE/2){
         customerX = findHighRES(newCus);//Đi tìm vị trí có RES cao nhất và gán nó cho customerX
-        if (newCus->energy - customerX->energy > 0)addLeft(newCus);//nếu hiệu energy của newCus và customerX dương thì add left, không thì ngược lại
+        if (newCus->energy - customerX->energy >= 0)addLeft(newCus);//nếu hiệu energy của newCus và customerX dương thì add left, không thì ngược lại
         else addRight(newCus);
         sizeCusInDesk++;
         customerX = newCus;
@@ -348,3 +375,80 @@ void imp_res::addinDesk(customer*newCus){
 }
 
 //DOMAIN_EXPASION
+void imp_res::kickSoccerer() {
+    customerTime*run = CustomerTimeTail;
+    while(run != nullptr){
+        if(run->data->energy > 0){
+            if (run->inDesk == true){
+                customerTime*temp = run;
+                temp->data->print();
+                run = run->pre;
+                kickCustomer(temp);
+            }
+            else{
+                customerTime*temp = run;
+                temp->data->print();
+                run = run->pre;
+                kickinQueue(temp);
+            }
+        }
+        else{
+            run = run->pre;
+        }
+    }
+}
+void imp_res::kickEvilSpirit() {
+    customerTime*run = CustomerTimeTail;
+    while(run != nullptr){
+        if(run->data->energy < 0){
+            if (run->inDesk == true){
+                customerTime*temp = run;
+                temp->data->print();
+                run = run->pre;
+                kickCustomer(temp);
+            }
+            else{
+                customerTime*temp = run;
+                temp->data->print();
+                run = run->pre;
+                kickinQueue(temp);
+            }
+        }
+        else{
+            run = run->pre;
+        }
+    }
+}
+void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
+    sizeCusInQueue--;
+    if(sizeCusInQueue == 0){
+        CustomerTimeTail = CustomerTimeTail->pre;
+        CustomerTimeTail->next = nullptr;
+        delete kickingCus;
+    }
+    else{
+        if(kickingCus->data == customerQueueHead){
+            customerQueueHead = customerQueueHead->next;
+        }
+        else{
+            customer*temp = customerQueueHead;
+            customer*run = temp->next;
+            while(run != kickingCus->data){
+                temp = run;
+                run = run->next;
+            }
+            if(run == customerQueueTail)customerQueueTail = temp;
+            temp->next = run->next;
+            temp = nullptr;
+        }
+        kickingCus->pre->next = kickingCus->next;
+        if(kickingCus == CustomerTimeTail){
+            CustomerTimeTail = kickingCus->pre;
+            CustomerTimeTail->next = nullptr;
+        }
+        else{
+            kickingCus->next->pre = kickingCus->pre;
+        }
+        delete kickingCus;
+    }
+}

@@ -1,76 +1,169 @@
-LIGHT 1 line 6
-Fl--6
-zy-5
-im--4
-rF--3
-LIGHT 1 line 7
-Fl--6
-zy-5
-im--4
-rF--3
-LIGHT 5 line 10
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
-LIGHT 3 line 12
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
-LIGHT -7 line 19
-DC--2
-Fl--6
-rF--3
-im--4
-zy-5
-LIGHT -2 line 33
-DC--2
-Fl--6
-rF--3
-im--4
-zy-5
-LIGHT 6 line 34
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
-LIGHT -2 line 37
-DC--2
-Fl--6
-rF--3
-im--4
-zy-5
-LIGHT -4 line 43
-DC--2
-Fl--6
-rF--3
-im--4
-zy-5
-LIGHT 3 line 45
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
-LIGHT 9 line 48
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
-LIGHT -8 line 49
-DC--2
-Fl--6
-rF--3
-im--4
-zy-5
-LIGHT 3 line 50
-DC--2
-zy-5
-im--4
-rF--3
-Fl--6
+DOMAIN_EXPANSION line 2
+DOMAIN_EXPANSION line 16
+vb--2
+dw--4
+wc--3
+as--3
+DOMAIN_EXPANSION line 19
+ce--1
+DOMAIN_EXPANSION line 20
+LIGHT -2 line 21
+up-3
+it-8
+oc-1
+ea-4
+tg-5
+ja-1
+de-3
+rj-6
+DOMAIN_EXPANSION line 29
+sz--6
+DOMAIN_EXPANSION line 33
+nf--4
+LIGHT -8 line 36
+ah-5
+ge--7
+hc-5
+rj-6
+su-6
+it-8
+bn-6
+ua-6
+oc-1
+ea-4
+tg-5
+uo-9
+dq-9
+dt-9
+DOMAIN_EXPANSION line 38
+cn--2
+ge--7
+DOMAIN_EXPANSION line 39
+LIGHT 9 line 40
+hc-5
+ah-5
+dt-9
+dq-9
+uo-9
+tg-5
+ea-4
+oc-1
+ua-6
+bn-6
+it-8
+su-6
+rj-6
+LIGHT 1 line 44
+wa-2
+dt-9
+dq-9
+uo-9
+ea-4
+ua-6
+bn-6
+su-6
+rj-6
+hc-5
+ah-5
+an--1
+DOMAIN_EXPANSION line 48
+gu--4
+ac--2
+ho--7
+an--1
+LIGHT 4 line 56
+ve--8
+vs-4
+ah-5
+wa-2
+gk--5
+lf--2
+cv--8
+LIGHT 2 line 59
+kn--5
+vs-4
+ah-5
+wa-2
+gk--5
+lf--2
+cv--8
+ve--8
+rl--7
+LIGHT 7 line 60
+kn--5
+vs-4
+ah-5
+wa-2
+gk--5
+lf--2
+cv--8
+ve--8
+rl--7
+DOMAIN_EXPANSION line 64
+ab-6
+vs-4
+wa-2
+ah-5
+LIGHT -10 line 66
+lc--2
+gk--5
+in--3
+fo--8
+kn--5
+rl--7
+ve--8
+cv--8
+lf--2
+DOMAIN_EXPANSION line 75
+xn-4
+xc-1
+to-2
+ag-5
+DOMAIN_EXPANSION line 78
+DOMAIN_EXPANSION line 79
+LIGHT -10 line 83
+jz--10
+bv--9
+ah--3
+ax--7
+lc--2
+in--3
+jr--8
+qf--7
+DOMAIN_EXPANSION line 84
+LIGHT -2 line 88
+tq-2
+jz--10
+bv--9
+ah--3
+ax--7
+lc--2
+in--3
+jr--8
+qf--7
+og--9
+wz-8
+DOMAIN_EXPANSION line 97
+ny-6
+ey-7
+tq-2
+wz-8
+LIGHT -5 line 101
+zu--3
+nm--2
+jz--10
+bv--9
+ah--3
+ax--7
+lc--2
+in--3
+jr--8
+qf--7
+og--9
+hw--7
+gl--5
+ue--1
+cy--8
+im--7
+jp--6
+wa-7

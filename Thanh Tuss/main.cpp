@@ -149,9 +149,11 @@ int main(int argc, char* argv[]) {
 //        delete r;
 //        solution.close();
     }
+
+
     {
         int start = 1;
-        int end = 200;
+        int end = 300;
 
         if(argc < 2 || argc == 2 && argv[1][0] == 'a')
         {
