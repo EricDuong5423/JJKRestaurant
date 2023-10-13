@@ -54,6 +54,11 @@ class imp_res : public Restaurant
         void kickCustomer(customerTime*kickingCus);//TODO:hàm đuổi khách đã được xác định
         void invitefromQueue();//TODO:Mời những vị khách trong hàng chờ vào nhà hàng và xóa vị khách đó ra khỏi hàng chờ
         void addinDesk(customer*Customer);//TODO:Add lại vào trong nhà hàng
+    //TODO:Hàm dành cho REVERSAL
+    public:
+        void reverseSoccerer();//TODO:Đảo chiều những chú thuật sư;
+        void reverseEvilSpirit();//TODO:Đảo chiều những oán linh;
+        void Swap(customer*&head, customer*&tail);//TODO:Hàm swap
     //TODO:Hàm dành cho DOMAIN EXPASION
     public:
         void kickSoccerer();//TODO:kick hết chú thuật sư
@@ -127,7 +132,9 @@ class imp_res : public Restaurant
         }
         void REVERSAL()
         {
-
+            if (sizeCusInDesk <= 1)return;//TODO:Không có ai trên bàn ăn thì không đảo.
+            reverseEvilSpirit();
+            reverseSoccerer();
         }
         void UNLIMITED_VOID()
         {
@@ -372,6 +379,79 @@ void imp_res::addinDesk(customer*newCus){
         sizeCusInDesk++;
         customerX = newCus;
     }//TODO:Trường hợp tổng quát
+}
+
+//REVERSAL
+void imp_res::reverseSoccerer() {
+    customer*head = nullptr;
+    customer*tail = nullptr;
+    customer*preHead = nullptr;
+    customer*nextTail = nullptr;
+    head = customerX;
+    tail = head->next;
+    do{
+        int count = 0;
+        while(head->energy < 0){
+            head = head->prev;
+            count++;
+            if (count == sizeCusInDesk || head == tail)return;
+        }
+        preHead = head->prev;
+        while(tail->energy < 0){
+            tail = tail->next;
+            if (tail == head)return;
+        }
+        nextTail = tail->next;
+        Swap(head,tail);
+        if (preHead == tail && nextTail == head)return;
+        head = preHead;
+        tail = nextTail;
+    }while (head != tail);
+    head = tail = preHead = nextTail = nullptr;
+}
+void imp_res::reverseEvilSpirit() {
+    customer*head = nullptr;
+    customer*tail = nullptr;
+    customer*preHead = nullptr;
+    customer*nextTail = nullptr;
+    head = customerX;
+    tail = head->next;
+    do{
+        int count = 0;
+        while(head->energy > 0){
+            head = head->prev;
+            count++;
+            if (count == sizeCusInDesk || head == tail)return;
+        }
+        preHead = head->prev;
+        while(tail->energy > 0){
+            tail = tail->next;
+            if (tail == head)return;
+        }
+        nextTail = tail->next;
+        Swap(head,tail);
+        if (preHead == tail && nextTail == head)return;
+        head = preHead;
+        tail = nextTail;
+    }while (head != tail);
+    head = tail = preHead = nextTail = nullptr;
+}
+void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
+    if (head == tail)return;
+    customer*temp;
+    temp = head->next;
+    head->next = tail->next;
+    tail->next = temp;
+
+    if(head->next != nullptr)head->next->prev = head;
+    if(tail->next != nullptr)tail->next->prev = tail;
+
+    temp = head->prev;
+    head->prev = tail->prev;
+    tail->prev = temp;
+
+    if(head->prev != nullptr)head->prev->next = head;
+    if(tail->prev != nullptr)tail->prev->next = tail;
 }
 
 //DOMAIN_EXPASION

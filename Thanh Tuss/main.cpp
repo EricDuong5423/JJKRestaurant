@@ -152,8 +152,8 @@ int main(int argc, char* argv[]) {
 
 
     {
-        int start = 1;
-        int end = 300;
+        int start = 301;
+        int end = 400;
 
         if(argc < 2 || argc == 2 && argv[1][0] == 'a')
         {
