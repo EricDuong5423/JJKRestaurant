@@ -42,6 +42,7 @@ void simulate(string filename, imp_res* r)
         }
         else if(str == "UNLIMITED_VOID") // UNLIMITED_VOID
         {
+            solution << str << " line " << i << endl;
             r->UNLIMITED_VOID();
         }
         else if(str == "DOMAIN_EXPANSION") // DOMAIN_EXPANSION
@@ -152,8 +153,8 @@ int main(int argc, char* argv[]) {
 
 
     {
-        int start = 301;
-        int end = 400;
+        int start = 1;
+        int end = 500;
 
         if(argc < 2 || argc == 2 && argv[1][0] == 'a')
         {

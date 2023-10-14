@@ -113,7 +113,7 @@ class imp_res : public Restaurant
                 customerX = newCus;
                 return;
             }//TODO:Trường hợp tổng quát
-        }
+        }//DONE.
         void BLUE(int num)
         {
             if (sizeCusInDesk == 0)return;//TODO:nếu không có khách trên bàn thì không xóa.
@@ -123,9 +123,9 @@ class imp_res : public Restaurant
                 customerTime*deleteCus = findKickingCustomer();
                 kickCustomer(deleteCus);
             }//TODO:Xóa khách num lần và xóa luôn thứ tự trong timeLine
-            invitefromQueue();
+            invitefromQueue();//TODO:Mời khách trong hàng chờ vào bàn
             return;
-        }
+        }//DONE.
         void PURPLE()
         {
 
@@ -133,16 +133,60 @@ class imp_res : public Restaurant
         void REVERSAL()
         {
             if (sizeCusInDesk <= 1)return;//TODO:Không có ai trên bàn ăn thì không đảo.
-            reverseEvilSpirit();
-            reverseSoccerer();
-        }
-        void UNLIMITED_VOID()
-        {
-
+            reverseEvilSpirit();//TODO:Hoán đổi oán linh trước
+            reverseSoccerer();//TODO:Hoán đổi chú thuật sư sau
+        }//DONE.
+        void UNLIMITED_VOID(){
+            if(sizeCusInDesk < 4)return;//TODO:Không đáp ứng đủ điều kiện để làm.
+            int min = INT_MAX;//TODO:Biến để so sánh sum của dãy
+            customer*head = nullptr, *tail = nullptr;
+            customer*countUp = customerX;
+            for(int i = 0; i < sizeCusInDesk; i++){
+                int sum = 0;
+                //TODO:countUP sẽ coi là cái head, run sẽ coi là cái tail
+                customer*run = countUp;
+                int j = 0;//TODO:Dùng để đếm số lượng phần tử trong dãy con
+                do{
+                    //TODO:Cho run chạy xung quanh cái bàn ăn rồi tính tổng của các energy mà run chạy qua
+                    sum += run->energy;
+                    if (j >= 3 && sum <= min){
+                        min = sum;
+                        head = countUp;
+                        tail = run;
+                    }
+                    //TODO:Nếu mà số lượng phần tử trong dãy con mà lớn hơn hoặc bằng 3 mà tổng lại nhỏ hơn min đang có thì thay đổi head và tail
+                    run = run->next;
+                    j++;
+                }while (run != countUp);//TODO:Điều kiện là run chỉ chạy tới cái "đầu" aka countUp;
+                countUp = countUp->next;
+            }//TODO:Đi tìm dãy con tổng nhỏ nhất
+            customer*run = head;//TODO:Iterator dùng để đi qua các khách hàng trong dãy con mình tìm được
+            customer*energyMin = head;//TODO:Biến dùng để lưu khách hàng có energy nhỏ nhất trong dãy con
+            int headtoMin = 0;//TODO:Biến để xíu xài cho in(đếm từ vị trí đầu dãy tới energyMin nhỏ nhất mình cần tìm)
+            int headtoTail = 0;//TODO:Biến để xíu xài cho in(đếm từ vị trí đầu dãy tới tail của dãy)
+            do{
+                if (energyMin->energy > run->energy){
+                    energyMin = run;
+                    headtoMin = headtoTail;
+                }//TODO:Nếu tìm ra được ai đó nhỏ hơn thì cập nhật lại energyMin và biến headtoMin
+                headtoTail++;
+                run = run->next;
+            }while(run != tail->next);//TODO:Đi tìm energy nhỏ nhất trong dãy con.
+            customer*print = energyMin;//TODO:Bắt đầu in từ energyMin tới tail của dãy con
+            for (int i = headtoMin; i < headtoTail; i++){
+                print->print();
+                print = print->next;
+            }
+            print = head;//TODO:Rồi sau đó bắt đầu in từ đầu cho tới trước energyMin;
+            for(int i = 0; i < headtoMin; i++){
+                print->print();
+                print = print->next;
+            }
+            print = head = tail = run = energyMin = countUp = nullptr;
         }
         void DOMAIN_EXPANSION()
         {
-            if(sizeCusInDesk == 0 && sizeCusInQueue == 0)return;
+            if(sizeCusInDesk == 0 && sizeCusInQueue == 0)return;//TODO:Không có ai trong bàn ăn lẫn hàng chờ sao mà kick
             int SoccererEnergy = 0, EvilSpiritEnergy = 0;
             customerTime*run = CustomerTimeHead;
             while(run != nullptr){
@@ -153,18 +197,18 @@ class imp_res : public Restaurant
                     EvilSpiritEnergy += run->data->energy;
                 }
                 run = run->next;
-            }
+            }//TODO:Tính energy của cả oán linh và chú thuật sư
             EvilSpiritEnergy = abs(EvilSpiritEnergy);
             run = nullptr;
-            if (SoccererEnergy == 0 || EvilSpiritEnergy == 0)return;
+            if (SoccererEnergy == 0 || EvilSpiritEnergy == 0)return;//TODO:Nếu chỉ có một phe có năng lượng còn phe còn lại không có ai thì không kick ai cả
             if(SoccererEnergy >= EvilSpiritEnergy){
                 kickEvilSpirit();
-            }
+            }//TODO:Kick oán linh nếu chú thuật sư năng lượng manh hơn.
             else{
                 kickSoccerer();
-            }
-            invitefromQueue();
-        }
+            }//TODO:Kick ngược lại đối với trường hợp ngược
+            invitefromQueue();//TODO:Mời vào bàn ăn với các vị khách trong hàng chờ(nếu có)
+        }//DONE.
         void LIGHT(int num)
         {
             if (num == 0 && sizeCusInQueue != 0){
@@ -197,7 +241,7 @@ class imp_res : public Restaurant
                 }
                 return;
             }//TODO:in ngược chiều kim đồng hồ nếu mà num âm
-        }
+        }//DONE.
 };
 
 //RED
@@ -255,8 +299,7 @@ Restaurant::customer* imp_res::findHighRES(customer *cus)
     customer*run = customerX;
     customer*result = run;
     int max = -1;
-    for(int i = 0; i < sizeCusInDesk; i++)
-    {
+    for(int i = 0; i < sizeCusInDesk; i++){
         int absSub = abs(cus->energy - run->energy);
         if (absSub > max)
         {
@@ -264,12 +307,12 @@ Restaurant::customer* imp_res::findHighRES(customer *cus)
             result = run;
         }
         run = run->next;
-    }
+    }//TODO:Chạy từ đầu cho đến hết bàn ăn coi ai có RES cao nhất thì trả về địa chỉ đó.
     run = nullptr;
-    delete run;
     return result;
 }
 void imp_res::addLeft(Restaurant::customer *cus) {
+    /*Giả sử add AB vào bên trái AC trong AC->AD thì nó sẽ ra: AC->AB->AD*/
     customer*temp = customerX->next;
     temp->prev = cus;
     cus->next = temp;
@@ -277,9 +320,9 @@ void imp_res::addLeft(Restaurant::customer *cus) {
     cus->prev = customerX;
     customerX = cus;
     temp = nullptr;
-    delete temp;
 }
 void imp_res::addRight(Restaurant::customer *cus) {
+    /*Giả sử add AB vào bên phải AC trong AE->AC thì nó sẽ ra: AE->AB->AC*/
     customer*temp = customerX->prev;
     temp->next = cus;
     cus->prev = temp;
@@ -287,11 +330,11 @@ void imp_res::addRight(Restaurant::customer *cus) {
     cus->next = customerX;
     customerX = cus;
     temp = nullptr;
-    delete temp;
 }
 
 //BLUE
 imp_res::customerTime*imp_res::findKickingCustomer() {
+    //TODO:Vì kick từ người đầu tiên vào bàn ăn nên đi tìm từ đầu timeline xuống.
     customerTime*run = CustomerTimeHead;
     while(run != nullptr){
         if(run->inDesk == true){
@@ -308,36 +351,39 @@ void imp_res::kickCustomer(imp_res::customerTime *kickingCus){
         if(sizeCusInQueue != 0){
             CustomerTimeHead = CustomerTimeHead->next;
             CustomerTimeHead->pre = nullptr;
-        }
+        }//TODO:Cũng là bàn ăn kick hết nhưng Queue còn người.
         else{
             delete CustomerTimeHead;
             CustomerTimeHead = CustomerTimeTail = nullptr;
-        }
-    }
+        }//TODO:Ngược lại cái ở trên
+    }//TODO:Trường hợp bàn ăn kick hết
     else{
+        //Nếu khách bị xóa là chú thuật sư thì customerX là người thuận chiều kim đồng hồ, không thì ngược lại
         if(kickingCus->data->energy > 0)customerX=kickingCus->data->next;
         else customerX=kickingCus->data->prev;
 
+        //Gán các prev next của khách ở trước và sau với nhau của vị khách đang xóa.
         kickingCus->data->prev->next = kickingCus->data->next;
         kickingCus->data->next->prev = kickingCus->data->prev;
         if(kickingCus == CustomerTimeHead) {
             CustomerTimeHead = CustomerTimeHead->next;
             CustomerTimeHead->pre = nullptr;
-        }
+        }//TODO:Nếu khách hàng định kick đầu TimeLine thì dịch đầu TimeLine qua bên phải.
         else{
             kickingCus->pre->next = kickingCus->next;
             if(kickingCus == CustomerTimeTail){
                 CustomerTimeTail = kickingCus->pre;
                 CustomerTimeTail->next = nullptr;
-            }
+            }//TODO:Nếu khách cần xóa cuối là cuối TimeLine thì dịch cuối TimeLine ngược về.
             else{
                 kickingCus->next->pre = kickingCus->pre;
-            }
-        }
+            }//TODO:Trường hợp tổng quát
+        }//TODO:Không thì...
         delete kickingCus;
     }
 }
 void imp_res::invitefromQueue() {
+    //TODO:Điều kiện dừng là khách trong hàng chờ = 0 hoặc khách trong bàn ăn bằng MAXSIZE
     while(sizeCusInQueue != 0 && sizeCusInDesk != MAXSIZE){
         customerTime*temp = CustomerTimeHead;
         for(int i = 0;i < sizeCusInQueue + sizeCusInDesk; i++){
@@ -346,15 +392,15 @@ void imp_res::invitefromQueue() {
             }
             else{
                 temp = temp->next;
-            }
+            }//TODO:Đi tìm đầu danh sách thời gian để tìm ra người đứng đầu trong hàng chờ.
         }
         if(temp->data == customerQueueTail){
             customerQueueHead = customerQueueTail = nullptr;
-        }
+        }//TODO:Nếu khách hàng đó cuối hàng chờ thì cho cái đầu và cuối danh sách hàng chờ bằng null
         else{
             customerQueueHead = customerQueueHead->next;
-        }
-        temp->inDesk = true;
+        }//TODO:Không thì đầu danh sách = người kế tiếp
+        temp->inDesk = true;//TODO:Đổi trạng thái từ là người trong hàng thành người trên bàn ăn
         addinDesk(temp->data);
         sizeCusInQueue--;
     }
@@ -385,8 +431,8 @@ void imp_res::addinDesk(customer*newCus){
 void imp_res::reverseSoccerer() {
     customer*head = nullptr;
     customer*tail = nullptr;
-    customer*preHead = nullptr;
-    customer*nextTail = nullptr;
+    customer*preHead = nullptr;//TODO:Dùng để giữ khách hàng trước đó của Head
+    customer*nextTail = nullptr;//TODO:Dùng để giữ khách hàng sau đó của Tail
     head = customerX;
     tail = head->next;
     do{
@@ -395,25 +441,25 @@ void imp_res::reverseSoccerer() {
             head = head->prev;
             count++;
             if (count == sizeCusInDesk || head == tail)return;
-        }
+        }//TODO:Đi tìm chú thuật sư
         preHead = head->prev;
         while(tail->energy < 0){
             tail = tail->next;
             if (tail == head)return;
-        }
+        }//TODO:Đi tìm chú thuật sư tiếp theo
         nextTail = tail->next;
-        Swap(head,tail);
-        if (preHead == tail && nextTail == head)return;
+        Swap(head,tail);//TODO:SWAP
+        if (preHead == tail && nextTail == head)return;//TODO:Check điều kiện dừng vòng lặp
         head = preHead;
         tail = nextTail;
-    }while (head != tail);
+    }while (head != tail);//TODO:Head đi ngược chiều đồng hồ còn tail đi thuận nếu gặp nhau thì end vòng lặp
     head = tail = preHead = nextTail = nullptr;
 }
 void imp_res::reverseEvilSpirit() {
     customer*head = nullptr;
     customer*tail = nullptr;
-    customer*preHead = nullptr;
-    customer*nextTail = nullptr;
+    customer*preHead = nullptr;//TODO:Dùng để giữ khách hàng trước đó của Head
+    customer*nextTail = nullptr;//TODO:Dùng để giữ khách hàng sau đó của Tail
     head = customerX;
     tail = head->next;
     do{
@@ -422,21 +468,22 @@ void imp_res::reverseEvilSpirit() {
             head = head->prev;
             count++;
             if (count == sizeCusInDesk || head == tail)return;
-        }
+        }//TODO:Đi tìm oán linh
         preHead = head->prev;
         while(tail->energy > 0){
             tail = tail->next;
             if (tail == head)return;
-        }
+        }//TODO:Đi tìm oán linh
         nextTail = tail->next;
-        Swap(head,tail);
-        if (preHead == tail && nextTail == head)return;
+        Swap(head,tail);//TODO:SWAP
+        if (preHead == tail && nextTail == head)return;//TODO:Check điều kiện dừng vòng lặp
         head = preHead;
         tail = nextTail;
-    }while (head != tail);
+    }while (head != tail);//TODO:Head đi ngược chiều đồng hồ còn tail đi thuận nếu gặp nhau thì end vòng lặp
     head = tail = preHead = nextTail = nullptr;
 }
 void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
+    //Tham khảo từ nguồn: https://www.geeksforgeeks.org/swap-given-nodes-in-a-doubly-linked-list-without-modifying-data/
     if (head == tail)return;
     customer*temp;
     temp = head->next;
