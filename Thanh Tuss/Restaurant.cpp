@@ -23,7 +23,7 @@ class imp_res : public Restaurant
                 this->inDesk = inDesk;
                 next = pre = nullptr;
             }//TODO:constructor class customerTime
-            ~customerTime(){delete data;}//TODO:deconstructor class customerTime
+            ~customerTime(){delete data;COUNTDELETE++;}//TODO:deconstructor class customerTime
         };//TODO:Class lưu timeline của các vị khách cho vào bàn ăn
     public:
         imp_res()
@@ -36,7 +36,15 @@ class imp_res : public Restaurant
 
             CustomerTimeHead = CustomerTimeTail = nullptr;
         }
-
+        ~imp_res(){
+            customerTime*run = CustomerTimeHead;
+            while(CustomerTimeHead != nullptr){
+                CustomerTimeHead = CustomerTimeHead->next;
+                delete run;
+                COUNTDELETE++;
+                run = CustomerTimeHead;
+            }
+        }
     private:
         customerTime *CustomerTimeTail;//TODO:Lưu thứ tự các vị khách được cho vào bàn ăn
         customerTime *CustomerTimeHead;//TODO:Lưu người đầu tiên trong timeline vào bàn ăn
@@ -64,6 +72,10 @@ class imp_res : public Restaurant
         void kickSoccerer();//TODO:kick hết chú thuật sư
         void kickEvilSpirit();//TODO: kick hết oán linh
         void kickinQueue(customerTime*kickingCus);//TODO: kick trong hàng chờ
+    //TODO:Hàm dành cho PURPLE
+    public:
+        customer* findHighestABS();//TODO:tìm chú thuật sư có giá trị tuyệt đối Energy cao nhất.
+        void ShellSort(customer*tailSort);//TODO:Shell sort.
     public:
         void RED(string name, int energy)
         {
@@ -75,11 +87,13 @@ class imp_res : public Restaurant
 
             //TODO:Sau khi check xem có đuổi khách hay không thì tiếp tục check xem khách được vào bàn hay vào hàng đợi
             customer* newCus = new customer(name,energy, nullptr, nullptr);//TODO:tạo một customer là khách mới vào
+            COUNTDELETE--;
 
             //TODO:check xem khách có bị đưa vào hàng chờ không ?
             if (sizeCusInDesk == MAXSIZE){
                 appendQueue(newCus);
                 customerTime*newTimeline = new customerTime(newCus,false);
+                COUNTDELETE--;
                 appendTimeline(newTimeline);
                 return;
             }//TODO:nếu trên có số lượng vượt ra khỏi qui định MAXSIZE thì add vào hàng đợi
@@ -91,6 +105,7 @@ class imp_res : public Restaurant
                 newCus->next = customerX;
                 sizeCusInDesk++;
                 customerTime*newTimeline = new customerTime(customerX,true);
+                COUNTDELETE--;
                 appendTimeline(newTimeline);
                 return;
             }//TODO:Nếu là vị khách đầu tiên thì prev với next bằng chính nó và customerX sẽ cập nhật
@@ -100,6 +115,7 @@ class imp_res : public Restaurant
                 else addRight(newCus);
                 sizeCusInDesk++;
                 customerTime *newTimeLine = new customerTime(newCus,true);
+                COUNTDELETE--;
                 appendTimeline(newTimeLine);
                 customerX = newCus;
                 return;
@@ -109,6 +125,7 @@ class imp_res : public Restaurant
                 else addRight(newCus);
                 sizeCusInDesk++;
                 customerTime*newTimeline = new customerTime(newCus,true);
+                COUNTDELETE--;
                 appendTimeline(newTimeline);
                 customerX = newCus;
                 return;
@@ -183,7 +200,7 @@ class imp_res : public Restaurant
                 print = print->next;
             }
             print = head = tail = run = energyMin = countUp = nullptr;
-        }
+        }//DONE
         void DOMAIN_EXPANSION()
         {
             if(sizeCusInDesk == 0 && sizeCusInQueue == 0)return;//TODO:Không có ai trong bàn ăn lẫn hàng chờ sao mà kick
@@ -267,10 +284,6 @@ bool imp_res::checkDuplicate(string name) {
             checkQueue = checkQueue->next;
         }
     }//TODO:nếu số lượng khách ở hàng đợi == 0 thì bỏ qua mà return false luôn
-    checkTable = nullptr;
-    checkQueue = nullptr;
-    delete checkTable;
-    delete checkQueue;
     return false;
 }
 void imp_res::appendQueue(Restaurant::customer *cus){
@@ -280,6 +293,7 @@ void imp_res::appendQueue(Restaurant::customer *cus){
     }//TODO:nếu là người đầu tiên thì cho vào đầu hàng chờ
     else{
         customerQueueTail->next = cus;
+        cus->prev = customerQueueTail;
         customerQueueTail = cus;
     }//TODO:bằng không thì add ra sau cùng hàng chờ
     sizeCusInQueue++;
@@ -349,11 +363,14 @@ void imp_res::kickCustomer(imp_res::customerTime *kickingCus){
     if(sizeCusInDesk == 0){
         customerX = nullptr;
         if(sizeCusInQueue != 0){
+            delete kickingCus;
+            COUNTDELETE++;
             CustomerTimeHead = CustomerTimeHead->next;
             CustomerTimeHead->pre = nullptr;
         }//TODO:Cũng là bàn ăn kick hết nhưng Queue còn người.
         else{
             delete CustomerTimeHead;
+            COUNTDELETE++;
             CustomerTimeHead = CustomerTimeTail = nullptr;
         }//TODO:Ngược lại cái ở trên
     }//TODO:Trường hợp bàn ăn kick hết
@@ -380,6 +397,7 @@ void imp_res::kickCustomer(imp_res::customerTime *kickingCus){
             }//TODO:Trường hợp tổng quát
         }//TODO:Không thì...
         delete kickingCus;
+        COUNTDELETE++;
     }
 }
 void imp_res::invitefromQueue() {
@@ -399,6 +417,7 @@ void imp_res::invitefromQueue() {
         }//TODO:Nếu khách hàng đó cuối hàng chờ thì cho cái đầu và cuối danh sách hàng chờ bằng null
         else{
             customerQueueHead = customerQueueHead->next;
+            customerQueueHead->prev = nullptr;
         }//TODO:Không thì đầu danh sách = người kế tiếp
         temp->inDesk = true;//TODO:Đổi trạng thái từ là người trong hàng thành người trên bàn ăn
         addinDesk(temp->data);
@@ -490,15 +509,15 @@ void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
     head->next = tail->next;
     tail->next = temp;
 
-    if(head->next != nullptr)head->next->prev = head;
-    if(tail->next != nullptr)tail->next->prev = tail;
+    head->next->prev = head;
+    tail->next->prev = tail;
 
     temp = head->prev;
     head->prev = tail->prev;
     tail->prev = temp;
 
-    if(head->prev != nullptr)head->prev->next = head;
-    if(tail->prev != nullptr)tail->prev->next = tail;
+    head->prev->next = head;
+    tail->prev->next = tail;
 }
 
 //DOMAIN_EXPASION
@@ -552,6 +571,7 @@ void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
         CustomerTimeTail = CustomerTimeTail->pre;
         CustomerTimeTail->next = nullptr;
         delete kickingCus;
+        COUNTDELETE++;
     }
     else{
         if(kickingCus->data == customerQueueHead){
@@ -577,5 +597,37 @@ void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
             kickingCus->next->pre = kickingCus->pre;
         }
         delete kickingCus;
+        COUNTDELETE++;
+    }
+}
+
+//PURPLE
+Restaurant::customer* imp_res::findHighestABS() {
+    int max = 0;
+    customerTime *findingCus = CustomerTimeTail;
+    customer *result = findingCus->data;
+    while (findingCus != nullptr){
+        if (findingCus->inDesk == false){
+            if (abs(findingCus->data->energy) > max){
+                max = abs(findingCus->data->energy);
+                result = findingCus->data;
+            }
+        }
+        findingCus = findingCus->pre;
+    }
+    findingCus = nullptr;
+    return result;
+}
+void imp_res::ShellSort(Restaurant::customer *tailSort) {
+    customer*count = customerQueueHead;
+    int size = 0;
+    while(count != tailSort){
+        size++;
+        count = count->next;
+    }
+
+    int N = 0;
+    for (int gap = size/2; gap > 0; gap /= 2){
+
     }
 }
