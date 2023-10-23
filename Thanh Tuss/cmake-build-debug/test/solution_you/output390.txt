@@ -1,27 +1,27 @@
 LIGHT 4 line 26
 sl-1
 vt--7
+hm--5
+mg--2
+oj--9
 ol--9
 qx-8
 fq--1
 pb-9
-hm--5
-mg--2
-oj--9
 qj--3
 jt--10
 LIGHT -1 line 52
 vp-5
-hm--5
-fq--1
-ol--9
-vt--7
-jt--10
-pb-9
-qj--3
-qx-8
 oj--9
 mg--2
+pb-9
+hm--5
+qx-8
+vt--7
+jt--10
+qj--3
+fq--1
+ol--9
 sl-1
 LIGHT 0 line 65
 rx--6

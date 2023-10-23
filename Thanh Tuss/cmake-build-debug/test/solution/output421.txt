@@ -14,11 +14,11 @@ UNLIMITED_VOID line 37
 LIGHT 3 line 51
 rv-2
 pq--4
-nj-6
+ee-2
 fz--3
 ds-7
 ov-3
-ee-2
+nj-6
 ob--8
 LIGHT 8 line 53
 rh-4

@@ -1,10 +1,10 @@
 LIGHT -5 line 55
 tn--4
-mo-3
 xp--6
 vz--10
-ax-1
+mo-3
 ay--6
+ax-1
 br--7
 es--8
 vl--8
@@ -14,13 +14,13 @@ cz--9
 eu-5
 LIGHT 6 line 79
 tn--4
+mo-3
 cz--9
-ax-1
+eu-5
 vc--6
 lk--2
-mo-3
 vl--8
-eu-5
+ax-1
 es--8
 br--7
 ay--6
@@ -33,10 +33,10 @@ vz--10
 ay--6
 br--7
 es--8
+eu-5
 vl--8
 mo-3
 lk--2
 vc--6
-ax-1
 cz--9
-eu-5
+ax-1

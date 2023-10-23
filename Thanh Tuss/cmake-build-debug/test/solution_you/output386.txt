@@ -8,21 +8,21 @@ xe--10
 rj-6
 LIGHT 8 line 17
 pd--4
-gx-8
-va-7
+or-8
 xe--10
 rj-6
 xw--8
 qt--5
-xq-3
+gx-8
 fm--8
-or-8
+va-7
+xq-3
 LIGHT -3 line 21
 pd--4
-rj-6
 xq-3
 xe--10
 or-8
+rj-6
 xw--8
 gx-8
 qt--5
@@ -30,37 +30,37 @@ fm--8
 va-7
 LIGHT -1 line 54
 fz--2
-or-8
-fm--8
-st--7
-dx--9
-xw--8
-pd--4
-xq-3
 va-7
+dx--9
+pd--4
+fm--8
 gx-8
+or-8
+xq-3
+xw--8
+st--7
 LIGHT -7 line 59
 fz--2
-or-8
-fm--8
-st--7
-dx--9
-xw--8
-pd--4
-xq-3
 va-7
+dx--9
+pd--4
+fm--8
 gx-8
+or-8
+xq-3
+xw--8
+st--7
 LIGHT -2 line 65
 fz--2
-fm--8
-xq-3
-va-7
-gx-8
-st--7
-or-8
 dx--9
-xw--8
 pd--4
+va-7
+fm--8
+xw--8
+st--7
+gx-8
+or-8
+xq-3
 LIGHT 6 line 97
 di--6
 yj-6

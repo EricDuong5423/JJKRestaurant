@@ -433,8 +433,6 @@ eg-2
 ex-2
 LIGHT 4 line 101
 ve--2
-gf-9
-pv-2
 lt-2
 sl-7
 ec-9
@@ -443,10 +441,12 @@ tq-2
 ea-6
 vx-4
 ex-2
+lq-8
+xn-3
 fo--10
 kp--4
-lq-8
+gf-9
 mt--9
 wp--10
 rt--3
-xn-3
+pv-2

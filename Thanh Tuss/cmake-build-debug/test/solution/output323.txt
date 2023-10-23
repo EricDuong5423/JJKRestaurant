@@ -9,13 +9,13 @@ he-8
 LIGHT 0 line 24
 LIGHT 7 line 46
 zg--1
-ca-9
-pp-5
 sr-4
+ue-1
+ca-9
 xu--7
 yh--3
 zu--2
-ue-1
+pp-5
 LIGHT 6 line 62
 rm--2
 ab--1

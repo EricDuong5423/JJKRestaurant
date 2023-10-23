@@ -60,6 +60,7 @@ void simulate(string filename, imp_res *r)
             r->LIGHT(stoi(num));
         }
         i++;
+        line++;
     }
 }
 
@@ -176,8 +177,8 @@ int main(int argc, char *argv[])
         argc--;
     }
     {
-        int start = 1;
-        int end = 500;
+        int start = 506;
+        int end = 506;
 
         if (argc == 2)
         {
@@ -195,8 +196,8 @@ int main(int argc, char *argv[])
             }
             else if (s == "purple")
             {
-                start = 501;
-                end = 600;
+                start = 201;
+                end = 300;
             }
             else if (s == "reversel")
             {

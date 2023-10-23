@@ -64,37 +64,37 @@ jg--7
 ya-9
 UNLIMITED_VOID line 91
 gz--10
-ad-7
+zj-8
 jg--7
 mj--9
 cn--5
 LIGHT 1 line 94
 jg--7
-ya-9
+ad-7
 hp--4
-zj-8
+ya-9
 mj--9
 cn--5
 gz--10
-ad-7
+zj-8
 UNLIMITED_VOID line 97
 gz--10
-ad-7
+zj-8
 jg--7
 mj--9
 cn--5
 UNLIMITED_VOID line 100
 gz--10
-ad-7
+zj-8
 jg--7
 mj--9
 cn--5
 LIGHT 8 line 101
 jg--7
-ya-9
+ad-7
 hp--4
-zj-8
+ya-9
 mj--9
 cn--5
 gz--10
-ad-7
+zj-8

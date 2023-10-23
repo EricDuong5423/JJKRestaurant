@@ -74,6 +74,10 @@ fw--7
 LIGHT 0 line 35
 UNLIMITED_VOID line 37
 kj--10
+ty--8
+kc-5
+dt-1
+oc-2
 rs--4
 rf--1
 kp--7
@@ -83,6 +87,10 @@ ru--6
 bi--4
 UNLIMITED_VOID line 42
 kj--10
+ty--8
+kc-5
+dt-1
+oc-2
 rs--4
 rf--1
 kp--7
@@ -92,6 +100,10 @@ ru--6
 bi--4
 UNLIMITED_VOID line 43
 kj--10
+ty--8
+kc-5
+dt-1
+oc-2
 rs--4
 rf--1
 kp--7
@@ -101,6 +113,10 @@ ru--6
 bi--4
 UNLIMITED_VOID line 44
 kj--10
+ty--8
+kc-5
+dt-1
+oc-2
 rs--4
 rf--1
 kp--7
@@ -226,58 +242,73 @@ pf--7
 kg--7
 UNLIMITED_VOID line 85
 kj--10
-my-1
+po-7
 jb--10
-ni-3
+ff-9
 kg--7
 pf--7
+gb-5
+my-1
+ha--3
+zj--3
+vi--5
 bi--4
 UNLIMITED_VOID line 86
 kj--10
-my-1
+po-7
 jb--10
-ni-3
+ff-9
 kg--7
 pf--7
+gb-5
+my-1
+ha--3
+zj--3
+vi--5
 bi--4
 UNLIMITED_VOID line 93
 kj--10
-my-1
+po-7
 jb--10
-ni-3
+ff-9
 kg--7
 pf--7
+gb-5
+my-1
+ha--3
+zj--3
+vi--5
 bi--4
 UNLIMITED_VOID line 97
 jb--10
 ik-1
-ni-3
 kg--7
+my-1
+ha--3
+zj--3
+vi--5
+ni-3
 lp-4
 bg--6
 nz--6
 rg--10
 oy--8
 hd--7
-ha--3
-zj--3
-vi--5
-my-1
 UNLIMITED_VOID line 99
 jb--10
 ik-1
-ni-3
 kg--7
+my-1
+ha--3
+zj--3
+vi--5
+ni-3
 lp-4
 bg--6
 nz--6
 rg--10
 oy--8
 hd--7
-ha--3
-zj--3
-vi--5
-my-1
 LIGHT -6 line 101
 hd--7
 oy--8
@@ -285,12 +316,12 @@ rg--10
 nz--6
 bg--6
 lp-4
-kg--7
 ni-3
-ik-1
-jb--10
-my-1
 vi--5
 zj--3
 ha--3
+my-1
+kg--7
+ik-1
+jb--10
 am-9

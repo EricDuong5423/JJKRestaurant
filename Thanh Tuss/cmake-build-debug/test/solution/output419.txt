@@ -124,12 +124,14 @@ UNLIMITED_VOID line 96
 nh--8
 zs--3
 hq--1
-ol-2
+kk--1
+ix-3
 UNLIMITED_VOID line 98
 nh--8
 zs--3
 hq--1
-ol-2
+kk--1
+ix-3
 LIGHT 3 line 101
 qt-7
 ol-2

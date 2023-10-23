@@ -33,17 +33,17 @@ to--9
 ln--10
 UNLIMITED_VOID line 89
 ln--10
+wb-6
 to--9
 wm--9
-wb-6
 LIGHT -5 line 98
 lr-2
 bo--8
 gf-9
 nx--10
+ln--10
 kj-8
 to--9
-ln--10
 wb-6
 wr-9
 xg-8
@@ -52,9 +52,9 @@ lr-2
 bo--8
 gf-9
 nx--10
+ln--10
 kj-8
 to--9
-ln--10
 wb-6
 wr-9
 xg-8

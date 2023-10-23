@@ -68,6 +68,9 @@ uh--10
 xp-6
 xt--3
 rp--8
+kx--4
+zl--1
+cx-5
 rz--7
 UNLIMITED_VOID line 47
 uu--10
@@ -78,6 +81,9 @@ xp-6
 xt--3
 rp--8
 fc--5
+kx--4
+zl--1
+cx-5
 rz--7
 UNLIMITED_VOID line 48
 uu--10
@@ -88,6 +94,9 @@ xp-6
 xt--3
 rp--8
 fc--5
+kx--4
+zl--1
+cx-5
 rz--7
 LIGHT 2 line 52
 ub-5
@@ -275,44 +284,44 @@ uh--10
 xt--3
 rp--8
 fc--5
-xp-6
+vo-3
 bk--7
 kk--7
-nu-8
+qo-3
 kb--5
 nf--1
-vo-3
-qo-3
+ub-5
+rc-4
 uu--10
 LIGHT 7 line 99
 bk--7
-xp-6
+vo-3
 fc--5
 rp--8
+nu-8
+xp-6
+xt--3
 rc-4
 ub-5
-xt--3
-qo-3
-vo-3
 uh--10
 uu--10
 nf--1
 kb--5
-nu-8
+qo-3
 kk--7
 LIGHT -2 line 101
 bk--7
 kk--7
-nu-8
+qo-3
 kb--5
 nf--1
 uu--10
 uh--10
-vo-3
-qo-3
-xt--3
 ub-5
 rc-4
+xt--3
+xp-6
+nu-8
 rp--8
 fc--5
-xp-6
+vo-3

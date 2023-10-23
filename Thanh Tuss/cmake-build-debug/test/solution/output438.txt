@@ -8,29 +8,29 @@ LIGHT -4 line 21
 LIGHT -3 line 33
 kg-6
 tl--8
-ig-5
+nk-6
 ma--5
 pa--7
-nk-6
-vs--2
 ra-7
 sf--5
+vs--2
+ig-5
 LIGHT -3 line 36
 kg-6
-tl--8
+ig-5
+vs--2
 ra-7
 sf--5
-nk-6
-vs--2
 pa--7
-ig-5
+nk-6
 ma--5
+tl--8
 UNLIMITED_VOID line 46
 sg--8
 ox--2
 fy--5
-fj--6
 jg-1
+fj--6
 iw--4
 UNLIMITED_VOID line 49
 LIGHT 8 line 51

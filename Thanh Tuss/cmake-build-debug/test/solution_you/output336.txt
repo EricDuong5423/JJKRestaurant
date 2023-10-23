@@ -35,27 +35,27 @@ yv--6
 hu-7
 LIGHT 4 line 89
 cc--3
-gx-2
-pg-5
+su-6
+mf-5
 yv--6
 lj--2
 cr--10
-bg-7
+ob-6
 hh--1
 vq--2
-ys-1
+by-5
 ms--2
 tf--8
 az--4
 ju--10
 fk--2
-su-6
+gx-2
 fj--6
-mf-5
+pg-5
 dh--8
 dz--9
-ob-6
-by-5
+bg-7
+ys-1
 LIGHT 6 line 101
 fv--6
 ws-7

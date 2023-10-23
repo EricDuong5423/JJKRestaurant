@@ -55,9 +55,9 @@ mk-1
 UNLIMITED_VOID line 68
 nv--8
 jp--6
-vl-3
 mk-1
 yv-3
+gv-1
 du--4
 zw--3
 LIGHT -5 line 69
@@ -65,12 +65,12 @@ bh-5
 nv--8
 zw--3
 du--4
+gv-1
 yv-3
 mk-1
-vl-3
 jp--6
+vl-3
 fj-9
-gv-1
 vh-6
 ll-2
 co-3
@@ -78,9 +78,9 @@ lt-8
 UNLIMITED_VOID line 70
 nv--8
 jp--6
-vl-3
 mk-1
 yv-3
+gv-1
 du--4
 zw--3
 UNLIMITED_VOID line 73

@@ -80,12 +80,18 @@ qz--4
 df--4
 ri-9
 hw--10
+bp--8
+pv-1
+vt-7
 UNLIMITED_VOID line 100
-zj--7
-sd--2
-he--6
-zr-1
-yg--5
+nd--10
+qz--4
+df--4
+ri-9
+hw--10
+bp--8
+pv-1
+vt-7
 LIGHT -1 line 101
 ee-1
 zj--7
