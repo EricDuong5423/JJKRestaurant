@@ -154,7 +154,7 @@ class imp_res : public Restaurant
             customer*tail =findHighestABS(size);
             if (tail == nullptr)return;
             shellSort(customerQueueHead,size);
-        }
+        }//DONE
         void REVERSAL()
         {
             if (sizeCusInDesk <= 1)return;//TODO:Không có ai trên bàn ăn thì không đảo.
@@ -220,10 +220,9 @@ class imp_res : public Restaurant
                 }
                 run = run->next;
             }//TODO:Tính energy của cả oán linh và chú thuật sư
-            EvilSpiritEnergy = abs(EvilSpiritEnergy);
-            run = nullptr;
-            if (SoccererEnergy == 0 || EvilSpiritEnergy == 0)return;//TODO:Nếu chỉ có một phe có năng lượng còn phe còn lại không có ai thì không kick ai cả
-            if(SoccererEnergy >= EvilSpiritEnergy){
+            int sum = SoccererEnergy + EvilSpiritEnergy;
+            sum = abs(sum);
+            if(SoccererEnergy >= sum){
                 kickEvilSpirit();
             }//TODO:Kick oán linh nếu chú thuật sư năng lượng manh hơn.
             else{
@@ -444,6 +443,7 @@ void imp_res::invitefromQueue() {
     }
 }
 void imp_res::addinDesk(customer*newCus){
+    newCus->next = newCus->prev = nullptr;
     if (sizeCusInDesk == 0){
         customerX = newCus;
         newCus->prev = customerX;
@@ -545,79 +545,108 @@ void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
 
 //DOMAIN_EXPASION
 void imp_res::kickSoccerer() {
-    customerTime*run = CustomerTimeTail;
+    customerTime*print = CustomerTimeTail;
+    while(print != nullptr){
+        if (print->data->energy > 0){
+            print->data->print();
+        }
+        print = print->pre;
+    }
+    customerTime*run = CustomerTimeHead;
     while(run != nullptr){
         if(run->data->energy > 0){
-            if (run->inDesk == true){
+            if (run->inDesk){
                 customerTime*temp = run;
-                temp->data->print();
-                run = run->pre;
+                run = run->next;
                 kickCustomer(temp);
             }
             else{
                 customerTime*temp = run;
-                temp->data->print();
-                run = run->pre;
+                run = run->next;
                 kickinQueue(temp);
             }
         }
         else{
-            run = run->pre;
+            run = run->next;
         }
     }
 }
 void imp_res::kickEvilSpirit() {
-    customerTime*run = CustomerTimeTail;
+    customerTime*run = CustomerTimeHead;
+    customerTime*print = CustomerTimeTail;
+    while(print != nullptr){
+        if (print->data->energy < 0){
+            print->data->print();
+        }
+        print = print->pre;
+    }
     while(run != nullptr){
         if(run->data->energy < 0){
-            if (run->inDesk == true){
+            if (run->inDesk){
                 customerTime*temp = run;
-                temp->data->print();
-                run = run->pre;
+                run = run->next;
                 kickCustomer(temp);
             }
             else{
                 customerTime*temp = run;
-                temp->data->print();
-                run = run->pre;
+                run = run->next;
                 kickinQueue(temp);
             }
         }
         else{
-            run = run->pre;
+            run = run->next;
         }
     }
 }
 void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
     sizeCusInQueue--;
-    if(sizeCusInQueue == 0){
-        CustomerTimeTail = CustomerTimeTail->pre;
-        CustomerTimeTail->next = nullptr;
-        delete kickingCus;
-        COUNTDELETE++;
-    }
-    else{
-        if(kickingCus->data == customerQueueHead){
-            customerQueueHead = customerQueueHead->next;
+    if (sizeCusInQueue == 0){
+        if (sizeCusInDesk == 0){
+            CustomerTimeHead = CustomerTimeTail = nullptr;
         }
         else{
-            customer*temp = customerQueueHead;
-            customer*run = temp->next;
-            while(run != kickingCus->data){
-                temp = run;
-                run = run->next;
+            if (kickingCus == CustomerTimeHead){
+                CustomerTimeHead = CustomerTimeHead->next;
+                CustomerTimeHead->pre = nullptr;
             }
-            if(run == customerQueueTail)customerQueueTail = temp;
-            temp->next = run->next;
-            temp = nullptr;
+            else if (kickingCus == CustomerTimeTail){
+                CustomerTimeTail = CustomerTimeTail->pre;
+                CustomerTimeTail->next = nullptr;
+                delete kickingCus;
+                COUNTDELETE++;
+            }
+            else{
+                kickingCus->pre->next = kickingCus->next;
+                kickingCus->next->pre = kickingCus->pre;
+            }
         }
-        kickingCus->pre->next = kickingCus->next;
-        if(kickingCus == CustomerTimeTail){
-            CustomerTimeTail = kickingCus->pre;
+    }
+    else{
+        if (kickingCus == CustomerTimeHead){
+            CustomerTimeHead = CustomerTimeHead->next;
+            CustomerTimeHead->pre = nullptr;
+        }
+        else if (kickingCus == CustomerTimeTail){
+            CustomerTimeTail = CustomerTimeTail->pre;
             CustomerTimeTail->next = nullptr;
         }
         else{
+            kickingCus->pre->next = kickingCus->next;
             kickingCus->next->pre = kickingCus->pre;
+        }
+
+
+        if (kickingCus->data == customerQueueHead){
+            customerQueueHead = customerQueueHead->next;
+            customerQueueHead->prev = nullptr;
+        }
+        else if (kickingCus->data == customerQueueTail){
+            customerQueueTail = customerQueueTail->prev;
+            customerQueueTail->next = nullptr;
+        }
+        else{
+            kickingCus->data->next->prev = kickingCus->data->prev;
+            kickingCus->data->prev->next = kickingCus->data->next;
         }
         delete kickingCus;
         COUNTDELETE++;
