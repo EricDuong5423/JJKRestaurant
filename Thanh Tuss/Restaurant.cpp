@@ -167,20 +167,20 @@ class imp_res : public Restaurant
             int MIN_TOTAL = 2147483647;
             customer* head = nullptr;
             int sizeMAX = 0;
-            customer* tempi = customerX;
+            customer* Tempi = customerX;
             for(int i = 0; i < sizeCusInDesk; i++){
                 int TOTAL = 0;
-                customer* tempj = tempi;
+                customer* Tempj = Tempi;
                 for(int j = 0; j < sizeCusInDesk; j++){
-                    TOTAL +=  tempj->energy;
+                    TOTAL +=  Tempj->energy;
                     if(j >= 3 && (MIN_TOTAL > TOTAL || MIN_TOTAL == TOTAL  && j + 1 >= sizeMAX)){
-                        head = tempi;
+                        head = Tempi;
                         sizeMAX = j + 1;
                         MIN_TOTAL = TOTAL;
                     }
-                    tempj = tempj->next;
+                    Tempj = Tempj->next;
                 }
-                tempi = tempi->next;
+                Tempi = Tempi->next;
             }
 
             customer* min = head;
@@ -220,9 +220,7 @@ class imp_res : public Restaurant
                 }
                 run = run->next;
             }//TODO:Tính energy của cả oán linh và chú thuật sư
-            int sum = SoccererEnergy + EvilSpiritEnergy;
-            sum = abs(sum);
-            if(SoccererEnergy >= sum){
+            if(SoccererEnergy >= abs(EvilSpiritEnergy)){
                 kickEvilSpirit();
             }//TODO:Kick oán linh nếu chú thuật sư năng lượng manh hơn.
             else{
@@ -302,7 +300,7 @@ void imp_res::appendQueue(Restaurant::customer *cus){
     }//TODO:bằng không thì add ra sau cùng hàng chờ
     sizeCusInQueue++;
 }
-void imp_res::appendTimeline(imp_res::customerTime *newTimeline) {
+void imp_res::appendTimeline(imp_res::customerTime *newTimeline){
     if (CustomerTimeTail == nullptr){
         CustomerTimeHead = CustomerTimeTail = newTimeline;
     }//TODO:nếu là người đầu tiên thì lưu vào đầu timeLine
@@ -351,11 +349,11 @@ void imp_res::addRight(Restaurant::customer *cus) {
 }
 
 //BLUE
-imp_res::customerTime*imp_res::findKickingCustomer() {
+imp_res::customerTime*imp_res::findKickingCustomer(){
     //TODO:Vì kick từ người đầu tiên vào bàn ăn nên đi tìm từ đầu timeline xuống.
     customerTime*run = CustomerTimeHead;
     while(run != nullptr){
-        if(run->inDesk == true){
+        if(run->inDesk){
             return run;
         }
         run = run->next;
@@ -365,60 +363,47 @@ imp_res::customerTime*imp_res::findKickingCustomer() {
 void imp_res::kickCustomer(imp_res::customerTime *kickingCus){
     sizeCusInDesk--;
     if(sizeCusInDesk == 0){
-        customerX = nullptr;
-        if(sizeCusInQueue != 0){
+        if(sizeCusInQueue == 0){
+            CustomerTimeHead = CustomerTimeTail = nullptr;
+        }
+        else{
             if (kickingCus == CustomerTimeHead){
                 CustomerTimeHead = CustomerTimeHead->next;
                 CustomerTimeHead->pre = nullptr;
-                delete kickingCus;
-                COUNTDELETE++;
+            }
+            else if (kickingCus == CustomerTimeTail){
+                CustomerTimeTail = CustomerTimeTail->pre;
+                CustomerTimeTail->next = nullptr;
             }
             else{
                 kickingCus->pre->next = kickingCus->next;
-                if(kickingCus == CustomerTimeTail){
-                    CustomerTimeTail = kickingCus->pre;
-                    CustomerTimeTail->next = nullptr;
-                }//TODO:Nếu khách cần xóa cuối là cuối TimeLine thì dịch cuối TimeLine ngược về.
-                else{
-                    kickingCus->next->pre = kickingCus->pre;
-                }//TODO:Trường hợp tổng quát
-                delete kickingCus;
-                COUNTDELETE++;
+                kickingCus->next->pre = kickingCus->pre;
             }
-        }//TODO:Cũng là bàn ăn kick hết nhưng Queue còn người.
-        else{
-            delete CustomerTimeHead;
-            COUNTDELETE++;
-            CustomerTimeHead = CustomerTimeTail = nullptr;
-        }//TODO:Ngược lại cái ở trên
-    }//TODO:Trường hợp bàn ăn kick hết
+        }
+    }
     else{
-        //Nếu khách bị xóa là chú thuật sư thì customerX là người thuận chiều kim đồng hồ, không thì ngược lại
         if(kickingCus->data->energy > 0)customerX=kickingCus->data->next;
         else customerX=kickingCus->data->prev;
-
-        //Gán các prev next của khách ở trước và sau với nhau của vị khách đang xóa.
-        kickingCus->data->prev->next = kickingCus->data->next;
         kickingCus->data->next->prev = kickingCus->data->prev;
-        if(kickingCus == CustomerTimeHead) {
+        kickingCus->data->prev->next = kickingCus->data->next;
+
+        if (kickingCus == CustomerTimeHead){
             CustomerTimeHead = CustomerTimeHead->next;
             CustomerTimeHead->pre = nullptr;
-        }//TODO:Nếu khách hàng định kick đầu TimeLine thì dịch đầu TimeLine qua bên phải.
+        }
+        else if (kickingCus == CustomerTimeTail){
+            CustomerTimeTail = CustomerTimeTail->pre;
+            CustomerTimeTail->next = nullptr;
+        }
         else{
             kickingCus->pre->next = kickingCus->next;
-            if(kickingCus == CustomerTimeTail){
-                CustomerTimeTail = kickingCus->pre;
-                CustomerTimeTail->next = nullptr;
-            }//TODO:Nếu khách cần xóa cuối là cuối TimeLine thì dịch cuối TimeLine ngược về.
-            else{
-                kickingCus->next->pre = kickingCus->pre;
-            }//TODO:Trường hợp tổng quát
-        }//TODO:Không thì...
-        delete kickingCus;
-        COUNTDELETE++;
+            kickingCus->next->pre = kickingCus->pre;
+        }
     }
+    delete kickingCus;
+    COUNTDELETE++;
 }
-void imp_res::invitefromQueue() {
+void imp_res::invitefromQueue(){
     //TODO:Điều kiện dừng là khách trong hàng chờ = 0 hoặc khách trong bàn ăn bằng MAXSIZE
     while(sizeCusInQueue != 0 && sizeCusInDesk != MAXSIZE){
         customerTime*temp = CustomerTimeHead;
@@ -466,7 +451,7 @@ void imp_res::addinDesk(customer*newCus){
 }
 
 //REVERSAL
-int imp_res::countCurseSpirit() {
+int imp_res::countCurseSpirit(){
     customer*run = customerX;
     int count = 0;
     do{
@@ -475,10 +460,9 @@ int imp_res::countCurseSpirit() {
         }
         run = run->next;
     }while(run != customerX);
-    run = nullptr;
     return count;
 }
-int imp_res::countSoccerer() {
+int imp_res::countSoccerer(){
     customer*run = customerX;
     int count = 0;
     do{
@@ -487,10 +471,9 @@ int imp_res::countSoccerer() {
         }
         run = run->next;
     }while(run != customerX);
-    run = nullptr;
     return count;
 }
-void imp_res::Reversal(int countS, int countCS) {
+void imp_res::Reversal(int countS, int countCS){
     customer*head = customerX;
     customer*tail = head;
     customer*prehead;
@@ -522,10 +505,8 @@ void imp_res::Reversal(int countS, int countCS) {
         head = prehead;
         tail = head;
     }while(headS < tailS || headCS < tailCS);
-    head = tail = prehead = nullptr;
 }
-void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
-    //Tham khảo từ nguồn: https://www.geeksforgeeks.org/swap-given-nodes-in-a-doubly-linked-list-without-modifying-data/
+void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail){
     if (head == tail)return;
     customer*temp;
     temp = head->next;
@@ -544,7 +525,7 @@ void imp_res::Swap(Restaurant::customer *&head, Restaurant::customer *&tail) {
 }
 
 //DOMAIN_EXPASION
-void imp_res::kickSoccerer() {
+void imp_res::kickSoccerer(){
     customerTime*print = CustomerTimeTail;
     while(print != nullptr){
         if (print->data->energy > 0){
@@ -571,7 +552,7 @@ void imp_res::kickSoccerer() {
         }
     }
 }
-void imp_res::kickEvilSpirit() {
+void imp_res::kickEvilSpirit(){
     customerTime*run = CustomerTimeHead;
     customerTime*print = CustomerTimeTail;
     while(print != nullptr){
@@ -598,7 +579,7 @@ void imp_res::kickEvilSpirit() {
         }
     }
 }
-void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
+void imp_res::kickinQueue(imp_res::customerTime *kickingCus){
     sizeCusInQueue--;
     if (sizeCusInQueue == 0){
         if (sizeCusInDesk == 0){
@@ -612,8 +593,6 @@ void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
             else if (kickingCus == CustomerTimeTail){
                 CustomerTimeTail = CustomerTimeTail->pre;
                 CustomerTimeTail->next = nullptr;
-                delete kickingCus;
-                COUNTDELETE++;
             }
             else{
                 kickingCus->pre->next = kickingCus->next;
@@ -648,13 +627,13 @@ void imp_res::kickinQueue(imp_res::customerTime *kickingCus) {
             kickingCus->data->next->prev = kickingCus->data->prev;
             kickingCus->data->prev->next = kickingCus->data->next;
         }
-        delete kickingCus;
-        COUNTDELETE++;
     }
+    delete kickingCus;
+    COUNTDELETE++;
 }
 
 //PURPLE
-Restaurant::customer* imp_res::findHighestABS(int &size) {
+Restaurant::customer* imp_res::findHighestABS(int &size){
     int max = 0;
     if (sizeCusInQueue == 0)return nullptr;
     customerTime *findingCus = CustomerTimeTail;
@@ -674,17 +653,16 @@ Restaurant::customer* imp_res::findHighestABS(int &size) {
         size++;
         run = run->next;
     }
-    run = nullptr;
     return result;
 }
-Restaurant::customer* imp_res::findAt(Restaurant::customer *head, int n) {
+Restaurant::customer* imp_res::findAt(Restaurant::customer *head, int n){
     customer*run = head;
     for(int i = 0; i < n; i++){
         run = run->next;
     }
     return run;
 }
-void imp_res::shellSort(Restaurant::customer *& list, int size) {
+void imp_res::shellSort(Restaurant::customer *& list, int size){
     int count = 0;
     for(int i = size / 2; i > 2; i /= 2){
         for(int j = 0; j < i; j++){
@@ -693,16 +671,17 @@ void imp_res::shellSort(Restaurant::customer *& list, int size) {
         }
     }
     customer*At = findAt(list,0);
-    count += insertionSort(list, size, 1);
+    count += insertionSort(At, size, 1);
     BLUE(count%MAXSIZE);
 }
-int imp_res::insertionSort(Restaurant::customer *&list, int size, int increment) {
+int imp_res::insertionSort(Restaurant::customer *&list, int size, int increment){
     int swap = 0;
     for(int i = increment; i < size; i++){
         for(int j = i; j >= increment; j -= increment){
             customer*first = findAt(list,j);
             customer*second = findAt(list, j - increment);
-            if (abs(first->energy) > abs(second->energy) || abs(first->energy) == abs(second->energy) && stableCheck(first,second)){
+            if (abs(first->energy) > abs(second->energy)
+            || abs(first->energy) == abs(second->energy) && stableCheck(first,second)){
                 if (first == customerQueueHead)customerQueueHead = second;
                 else if (second == customerQueueHead)customerQueueHead = first;
                 if (first == customerQueueTail)customerQueueTail = second;
@@ -715,7 +694,7 @@ int imp_res::insertionSort(Restaurant::customer *&list, int size, int increment)
     }
     return swap;
 }
-bool imp_res::stableCheck(Restaurant::customer *first, Restaurant::customer *second) {
+bool imp_res::stableCheck(Restaurant::customer *first, Restaurant::customer *second){
     customerTime*run = CustomerTimeHead;
     for(int i = 0; i < sizeCusInDesk + sizeCusInQueue; i++){
         if (run->data == first)return true;
@@ -724,7 +703,7 @@ bool imp_res::stableCheck(Restaurant::customer *first, Restaurant::customer *sec
     }
     return false;
 }
-void imp_res::swapQueue(Restaurant::customer *&head, Restaurant::customer *&first, Restaurant::customer *&second) {
+void imp_res::swapQueue(Restaurant::customer *&head, Restaurant::customer *&first, Restaurant::customer *&second){
     if (head == first)head = second;
     if (head == second) head = first;
 
