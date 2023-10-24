@@ -673,7 +673,7 @@ int imp_res::insertionSort(Restaurant::customer *&list, int size, int increment)
         for(int j = i; j >= increment; j -= increment){
             customer*first = findAt(list,j);
             customer*second = findAt(list, j - increment);
-            if (abs(first->energy) > abs(second->energy) || abs(first->energy) == abs(second->energy) && stableCheck(first,second) == false){
+            if (abs(first->energy) > abs(second->energy) || abs(first->energy) == abs(second->energy) && stableCheck(first,second)){
                 if (first == customerQueueHead)customerQueueHead = second;
                 else if (second == customerQueueHead)customerQueueHead = first;
                 if (first == customerQueueTail)customerQueueTail = second;
@@ -691,12 +691,13 @@ bool imp_res::stableCheck(Restaurant::customer *first, Restaurant::customer *sec
     for(int i = 0; i < sizeCusInDesk + sizeCusInQueue; i++){
         if (run->data == first)return true;
         else if (run->data == second)return false;
+        run = run->next;
     }
     return false;
 }
 void imp_res::swapQueue(Restaurant::customer *&head, Restaurant::customer *&first, Restaurant::customer *&second) {
-    if (first == head)head = second;
-    if (second == head) head = first;
+    if (head == first)head = second;
+    if (head == second) head = first;
 
     customer*temp = first->next;
     first->next = second->next;
@@ -711,4 +712,7 @@ void imp_res::swapQueue(Restaurant::customer *&head, Restaurant::customer *&firs
 
     if (first->prev != nullptr)first->prev->next = first;
     if (second->prev != nullptr)second->prev->next = second;
+    temp = first;
+    first = second;
+    second = temp;
 }

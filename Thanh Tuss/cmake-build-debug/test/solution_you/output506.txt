@@ -6,17 +6,18 @@ BD-3
 BE-4
 BF-9
 LIGHT 0 line 20
+BF-9
 BE-4
-BC-3
 BB-3
+BC-3
 BD-3
 BA-2
 LIGHT 1 line 21
-BF-9
 AZ-9
 AI-9
 AH-3
 AF-8
+AB-1
 AC-2
 AD-3
 AE-4

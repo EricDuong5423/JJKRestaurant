@@ -177,8 +177,8 @@ int main(int argc, char *argv[])
         argc--;
     }
     {
-        int start = 506;
-        int end = 506;
+        int start = 1;
+        int end = 100;
 
         if (argc == 2)
         {
