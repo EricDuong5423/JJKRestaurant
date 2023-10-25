@@ -669,7 +669,7 @@ void imp_res::shellSort(Restaurant::customer *& list, int size){
 }
 int imp_res::insertionSort(Restaurant::customer *&list, int size, int increment){
     int swap = 0;//Biến đếm số lần swap
-    for(int i = increment; i < size; i++){
+    for(int i = increment; i < size; i+=increment){
         for(int j = i; j >= increment; j -= increment){
             customer*first = findAt(list,j);
             customer*second = findAt(list, j - increment);
